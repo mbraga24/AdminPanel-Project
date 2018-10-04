@@ -1,2 +1,11 @@
 <h1>Instructors#new</h1>
-<p>Find me in app/views/instructors/new.html.erb</p>
+<p>I will have a form to create/delete/edit instructors on this page</p>
+
+<%= form_with(model: @instructor) do |form| %>
+  First Name <%= form.text_field(:first_name) %> <br />
+  Last Name  <%= form.text_field(:last_name)  %> <br />
+  Age        <%= form.text_field(:age)        %> <br />
+  Salary     <%= form.text_field(:salary)     %> <br />
+  Education  <%= form.text_field(:education)  %> <br />
+<%= form.submit %>
+<% end %>

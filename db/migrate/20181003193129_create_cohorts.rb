@@ -7,6 +7,7 @@ class CreateCohorts < ActiveRecord::Migration[5.2]
       t.string  :instructor_name
       t.string  :course_name
       t.integer :class_size
+      t.references :course
 
       t.timestamps
     end

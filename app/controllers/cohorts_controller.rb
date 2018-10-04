@@ -6,11 +6,14 @@ class CohortsController < ApplicationController
   end
 
   def new
+    @courses = Course.all
+    
     @cohort = Cohort.new
   end
 
   def create
     cohort = Cohort.create(
+      course_id:       params[:cohort][:course_id],
       name:            params[:cohort][:name],
       start_date:      params[:cohort][:start_date],
       end_date:        params[:cohort][:end_date],
