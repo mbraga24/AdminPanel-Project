@@ -2,9 +2,10 @@
 <p>I will have a form to create/delete/edit students on this page</p>
 
 <%= form_with(model: @student) do |form| %>
+  Cohort ID   <%= form.select :cohort_id, options_for_select(@cohorts, @cohort_id) %> <br />
   First Name: <%= form.text_field(:first_name) %> <br />
-  Last Name:  <%= form.text_field(:last_name)  %>  <br />
-  Age:        <%= form.text_field(:age)        %>        <br />
-  Education:  <%= form.text_field(:education)  %>  <br />
+  Last Name:  <%= form.text_field(:last_name)  %> <br />
+  Age:        <%= form.text_field(:age)        %> <br />
+  Education:  <%= form.text_field(:education)  %> <br />
   <%= form.submit %>
 <% end %>

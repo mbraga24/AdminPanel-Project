@@ -2,7 +2,8 @@
 <p>I will have a form to create/delete/edit courses on this page</p>
 
 <%= form_with(model: @course) do |form| %>
-  Name:         <%= form.text_field(:name) %>       <br />
+  Name:         <%= form.text_field(:name)       %> <br />
+  Code Name:    <%= form.text_field(:code_name)  %> <br />
   Total Hours:  <%= form.text_field(:total_hours)%> <br />
 <%= form.submit %>
 <% end %>

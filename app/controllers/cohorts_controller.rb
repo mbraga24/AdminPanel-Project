@@ -1,34 +1,46 @@
 class CohortsController < ApplicationController
   def index
-  end
+    @cohorts = Cohort.all
 
-  def update
   end
 
   def new
-    @courses = Course.all
-    
     @cohort = Cohort.new
+    
+    @courses = Course.all.map { |course| 
+      [course.name, course.id] 
+    }
   end
 
   def create
     cohort = Cohort.create(
       course_id:       params[:cohort][:course_id],
-      name:            params[:cohort][:name],
+      class_size:      params[:cohort][:class_size],
       start_date:      params[:cohort][:start_date],
-      end_date:        params[:cohort][:end_date],
-      instructor_name: params[:cohort][:instructor_name],
-      course_name:     params[:cohort][:course_name],
-      class_size:      params[:cohort][:class_size]
+      end_date:        params[:cohort][:end_date]
     )
 
-    redirect_to root_path
-  end
-
-  def show
+    redirect_to cohorts_path
   end
 
   def edit
+    @cohort = Cohort.find(params[:id])
+  end
+
+  def update
+    cohort = Cohort.find(params[:id])
+
+    cohort.update(
+      class_size:       params[:cohort][:class_size],
+      start_date:       params[:cohort][:start_date],
+      end_date:         params[:cohort][:end_date]
+    )
+
+    redirect_to cohorts_path(cohort)
+  end
+
+  def show
+    @cohort = Cohort.find(params[:id])
   end
 
   def delete

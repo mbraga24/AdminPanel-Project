@@ -1,2 +1,8 @@
-<h1>Cohorts#edit</h1>
-<p>Find me in app/views/cohorts/edit.html.erb</p>
+<h1>Edit Cohorts</h1>
+
+<%= form_with(model: @cohort) do |form|                       %>
+      Class Size:       <%= form.text_field(:class_size)      %><br />      
+      Start Date:       <%= form.text_field(:start_date)      %><br />
+      End Date:         <%= form.text_field(:end_date)        %><br />
+      <%= form.submit %>
+<% end %>

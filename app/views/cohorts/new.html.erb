@@ -1,22 +1,15 @@
 <h1>Cohorts#new</h1>
 <p>I will have a form to create/delete/edit cohorts on this page</p>
 
-<%= form_with(model: @cohort) do |form| %>
-  Course ID Number <%= form.text_field(:course_id)       %> <br />
-  Name:            <%= form.text_field(:name)            %> <br />
-  Start Date:      <%= form.text_field(:start_date)      %> <br />
-  End Date:        <%= form.text_field(:end_date)        %> <br />
-  Instructor Name: <%= form.text_field(:instructor_name) %> <br />
-  Course Name:     <%= form.text_field(:course_name)     %> <br />
-  Class Size:      <%= form.text_field(:class_size)      %> <br />
+<%= form_with(model: @cohort) do |form|             %>
+  Course ID Number <%= form.select :course_id, options_for_select(@courses, @cohort.course_id) %> <br />
+
+
+  Class Size:      <%= form.text_field(:class_size) %> <br />
+  Start Date:      <%= form.text_field(:start_date) %> <br />
+  End Date:        <%= form.text_field(:end_date)   %> <br />
 
 <%= form.submit %>
 <% end %>
 <br />
 
-<p>Courses</p>
-<% @courses.each do |course| %>
-<ul>
-  <li><%= course.name %>: <%= course.id %></li><br />
-</ul>
-<% end %>

@@ -1,2 +1,44 @@
-<h1>Courses#index</h1>
-<p>Find me in app/views/courses/index.html.erb</p>
+<h1 class="center-title" >Courses</h1>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Course Name</th>
+      <th scope="col">Code Name</th>
+      <th scope="col">Total Hours</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @courses.each do |course| %>
+    <tr>
+      <th scope="row"><%= course.id %></th>
+      <td><%= course.name        %></td>
+      <td><%= course.code_name   %></td>
+      <td><%= course.total_hours %></td>
+      <td><button type="button" class="btn btn-default btn-sm">
+          <a href="<%= edit_course_path(course) %>"><span class="glyphicon glyphicon-pencil"></span></a>
+        </button></td>
+      <td><button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-trash"></span> 
+        </button></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<!-- 
+<div class="card text-center">
+<% @courses.each do |course| %>
+  <div class="card-header">
+    <%= course.name %> : <%= course.code_name %>
+  </div>
+  <div class="card-body">
+    <p class="card-text">Total Hours: <%= course.total_hours %></p>
+    <a href="<%= edit_course_path(course) %>" class="btn btn-primary">Edit</a>
+    <a href="#" class="btn btn-primary">Delete</a>
+  </div>
+  <% end %>
+</div> -->

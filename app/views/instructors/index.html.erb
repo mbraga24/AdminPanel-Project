@@ -1,2 +1,59 @@
-<h1>Instructors#index</h1>
-<p>Find me in app/views/instructors/index.html.erb</p>
+<h1 class="center-title">Instructors</h1>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Instructor</th>
+      <th scope="col">Cohort Assc.</th>
+      <th scope="col">Education</th>
+      <th scope="col">Age</th>
+      <th scope="col">Salary</th>
+      <th scope="col">Created</th>
+      <th scope="col">Updated</th>
+      <th scope="col">Edit</th>
+      <th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @instructors.each do |instructor|  %>
+    <tr>
+      <th scope="row"><%= instructor.id %></th>
+      <td><%= instructor.first_name %> <%= instructor.last_name %></td>
+      <td><%= instructor.cohort_id  %></td>
+      <td><%= instructor.education  %></td>
+      <td><%= instructor.age        %></td>
+      <td><%= instructor.salary     %></td>
+      <td><%= instructor.created_at.to_date %></td>
+      <td><%= instructor.updated_at.to_date %></td>
+      <td><button type="button" class="btn btn-default btn-sm">
+          <a href="<%= edit_instructor_path(instructor) %>"><span class="glyphicon glyphicon-pencil"></span></a>
+        </button></td>
+      <td><button type="button" class="btn btn-default btn-sm">
+          <span class="glyphicon glyphicon-trash"></span> 
+        </button></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<!-- 
+<div class="card text-center">
+<% @instructors.each do |instructor| %>
+  <div class="card-header">
+    <p class="card-text"> <%= instructor.first_name %> <%= instructor.last_name %></p>
+  </div>
+  <div class="card-body">
+    <p class="card-text">Age:               <%= instructor.age       %> </p>
+    <p class="card-text">Salary:            <%= instructor.salary    %> </p>
+    <p class="card-text">Education:         <%= instructor.education %> </p>
+    <p class="card-text">Cohort:            <%= instructor.cohort_id %> </p>
+    <a href="<%= edit_instructor_path(instructor) %>" class="btn btn-primary">Edit</a>
+    <a href="#" class="btn btn-primary">Delete</a>
+  </div>
+  <div class="card-footer text-muted">
+    Created at: <%= instructor.created_at %><br />
+    Updated at: <%= instructor.updated_at %>
+  </div>
+  <% end %>
+</div> -->

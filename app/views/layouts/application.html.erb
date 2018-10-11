@@ -4,20 +4,21 @@
     <title>PamelasPanel</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-
-  <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
+ <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Pamela's Panel</a>
+<% if admin_signed_in? %>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -26,31 +27,87 @@
       <li class="nav-item active">
         <a class="nav-link" href="<%= root_path %>">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= new_course_path %>">Courses</a>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Courses
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="<%= courses_path %>">Display courses</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="<%= new_course_path %>">Create course</a>
+        </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= new_cohort_path %>">Cohort</a>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Cohorts
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="<%= cohorts_path %>">Display cohorts</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="<%= new_cohort_path %>">Create cohort</a>
+        </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= new_instructor_path %>">Instructors</a>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Instructors
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="<%= instructors_path %>">Display instructors</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="<%= new_instructor_path %>">Create instructor</a>
+        </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= new_student_path %>">Students</a>
+    
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Students
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="<%= students_path %>">Display students</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="<%= new_student_path %>">Create student</a>
+        </div>
       </li>
       </li>
     </ul>
   </div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signup-modal">
-      SignUp
+  <ul class="navbar-nav">
+     <li class="nav-item active">
+      <a href="#" class="btn btn-dark btn-sm disabled" role="button" aria-disabled="true">Logged in as: <%= current_admin.email %></a>
+      </li>
+      <li>
+    <button type="button" class="btn btn-dark">
+      <%= link_to 'Edit profile', edit_admin_registration_path, :class => 'navbar-link' %>
     </button>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signin-modal">
-      SignIn
+    </li>
+    <li>
+    <button type="button" class="btn btn-dark">
+      <%= link_to "Logout", destroy_admin_session_path, method: :delete  %>
     </button>
+    </li>
+    <% else %>
+    <button type="button" class="btn btn-dark">
+      <%= link_to "Sign up", new_admin_registration_path, :class => 'navbar-link'  %>
+    </button>
+    <button type="button" class="btn btn-dark">
+      <%= link_to "Login", new_admin_session_path, :class => 'navbar-link'  %>
+    </button>
+    <% end %>
+      </li>
+      </ul>
 </nav>
 
-
     <div class="container">
+  <% if notice %>
+    <button class="btn btn-primary btn-lg active btn-block alert alert-success" role="button" aria-pressed="true"><%= notice %></button>
+  <% end %>
+  <% if alert %>
+    <button class="btn btn-primary btn-lg active btn-block alert alert-danger" role="button" aria-pressed="true"><%= alert %></button>
+  <% end %>
+
   <%= yield %>
     </div>
 
@@ -76,27 +133,8 @@
   </div>
 </div>
 
-<!-- SIGN-UP -->
-
-    <div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
-
   </body>
 </html>
+
+  <!-- <%= link_to 'Edit profile', edit_admin_registration_path, :class => 'navbar-link' %>
+  <%= link_to "Logout", destroy_admin_session_path, method: :delete, :class => 'navbar-link'  %> -->
