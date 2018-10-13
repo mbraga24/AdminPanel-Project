@@ -13,3 +13,16 @@
  *= require_tree .
  *= require_self
  */
+
+ .button-pos {
+  height: 25px;
+  width: 80px;
+ }
+
+ .button-separate {
+  margin-left: 10px;
+ }
+
+ .button-top {
+  margin-top: 5px;
+ }

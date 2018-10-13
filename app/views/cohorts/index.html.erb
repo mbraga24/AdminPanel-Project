@@ -8,60 +8,46 @@
       <th scope="col">Instructor</th>
       <th scope="col">Class Size</th>
       <th scope="col">Course Assc.</th>
-      <th scope="col">Created</th>
-      <th scope="col">Updated</th>
+      <th scope="col">Start Date</th>
+      <th scope="col">End Date</th>
       <th scope="col">Edit</th>
       <th scope="col">Delete</th>
     </tr>
   </thead>
   <tbody>
   <% @cohorts.each do |cohort| %>
-    <tr>
+    <tr id="cohort<%= cohort.id %>">
       <th scope="row"><%= cohort.id %></th>
-      <td><%= cohort.course.name %>: <%= cohort.course.code_name %></td>
+      <% if cohort.course %>
+        <td><%= cohort.course.name %>: <%= cohort.course.code_name %></td>
+      <% else %>
+        <td><%= %></td>
+      <% end %>
       <% if cohort.instructor %>
-      <td><%= cohort.instructor.first_name %> <%= cohort.instructor.last_name %></p></td>
+        <td><%= cohort.instructor.first_name %> <%= cohort.instructor.last_name %>  </td>
+      <% else %>
+        <td><%= %></td>
       <% end %>
       <td><%= cohort.class_size %></td>
-      <td><%= cohort.course_id %></td>
-      <td><%= cohort.created_at.to_date %></td>
-      <td><%= cohort.updated_at.to_date %></td>
+      <td><%= cohort.course_id  %></td>
+      <td><%= cohort.start_date %></td>
+      <td><%= cohort.end_date   %></td>
       <td><button type="button" class="btn btn-default btn-sm">
           <a href="<%= edit_cohort_path(cohort) %>"><span class="glyphicon glyphicon-pencil"></span></a>
         </button></td>
-      <td><button type="button" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-trash"></span> 
-        </button></td>
+      <td>
+        <button type="button" class="btn btn-default btn-sm">
+          <%= link_to(cohort_path(cohort.id), method: :delete, remote: :true) do %>
+            <span class="glyphicon glyphicon-trash"></span>
+          <% end %>
+        </button>
+      </td>
     </tr>
   <% end %>
   </tbody>
 </table>
-
-
-<!-- 
-<div class="card text-center">
-<% @cohorts.each do |cohort| %>
-  <div class="card-header">
-    <p class="card-text"><%= cohort.course.name %>: <%= cohort.course.code_name %></p>
-  </div>
-  <div class="card-body">
-  <% if cohort.instructor %>
-    <p class="card-text">Instructor:        <%= cohort.instructor.first_name %> <%= cohort.instructor.last_name %></p>
-  <% end %>
-    <p class="card-text">Class Size:        <%= cohort.class_size %>     </p>
-    <p class="card-text">Course Associated: <%= cohort.course_id %>      </p>
-    <a href="<%= edit_cohort_path(cohort) %>" class="btn btn-primary">Edit</a>
-    <% %>
-    <a href="<%= cohort_path(cohort) %>" class="btn btn-primary">Students</a>
-    <% %>
-  </div>
-  <div class="card-footer text-muted">
-    <%= cohort.start_date %>
-    <%= cohort.end_date   %>
-  </div>
-  <div class="card-footer text-muted">
-    Created at: <%= cohort.created_at %><br />
-    Updated at: <%= cohort.updated_at %>
-  </div>
-  <% end %>
-</div> -->
+<div class="col-md-12 text-center"> 
+    <button type="button" class="btn btn-warning btn-lg">
+      <a href="<%= new_cohort_path %>">Create a Cohort</a>
+    </button> 
+</div>

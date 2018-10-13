@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 2018_10_10_191522) do
   create_table "students", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
+    t.string "email"
     t.integer "age"
     t.string "education"
     t.bigint "cohort_id"

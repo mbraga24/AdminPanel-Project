@@ -2,6 +2,7 @@ class CohortsController < ApplicationController
   def index
     @cohorts = Cohort.all
 
+    @courses = Course.all
   end
 
   def new
@@ -41,6 +42,15 @@ class CohortsController < ApplicationController
 
   def show
     @cohort = Cohort.find(params[:id])
+  end
+
+  def destroy
+    @cohort = Cohort.find(params[:id])
+    @cohort.destroy
+
+    respond_to do |format|
+      format.js
+    end
   end
 
   def delete

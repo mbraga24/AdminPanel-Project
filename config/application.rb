@@ -17,3 +17,7 @@ module PamelasPanel
     # the framework and any gems in your application.
   end
 end
+
+Raven.configure do |config|
+  config.dsn = ENV['ADMIN_ENV_KEY']
+end

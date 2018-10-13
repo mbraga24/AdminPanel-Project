@@ -42,7 +42,13 @@ class InstructorsController < ApplicationController
     redirect_to instructors_path(instructor)
   end
 
-  def show
+  def destroy
+    @instructor = Instructor.find(params[:id])
+    @instructor.destroy
+
+    respond_to do |format|
+      format.js  
+    end
   end
 
   def delete

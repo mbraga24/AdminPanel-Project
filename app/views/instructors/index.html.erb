@@ -17,7 +17,7 @@
   </thead>
   <tbody>
   <% @instructors.each do |instructor|  %>
-    <tr>
+    <tr id="instructor<%= instructor.id %>">
       <th scope="row"><%= instructor.id %></th>
       <td><%= instructor.first_name %> <%= instructor.last_name %></td>
       <td><%= instructor.cohort_id  %></td>
@@ -26,16 +26,28 @@
       <td><%= instructor.salary     %></td>
       <td><%= instructor.created_at.to_date %></td>
       <td><%= instructor.updated_at.to_date %></td>
-      <td><button type="button" class="btn btn-default btn-sm">
+      <td>
+        <button type="button" class="btn btn-default btn-sm">
           <a href="<%= edit_instructor_path(instructor) %>"><span class="glyphicon glyphicon-pencil"></span></a>
-        </button></td>
-      <td><button type="button" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-trash"></span> 
-        </button></td>
+        </button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-default btn-sm">
+          <%= link_to(instructor_path(id: instructor.id), method: :delete, remote: true) do %>
+            <span class="glyphicon glyphicon-trash"></span> 
+          <% end %>
+        </button>
+      </td>
     </tr>
   <% end %>
   </tbody>
 </table>
+
+<div class="col-md-12 text-center"> 
+    <button type="button" class="btn btn-warning btn-lg">
+      <a href="<%= new_instructor_path %>">Create a Instructor</a>
+    </button> 
+</div>
 
 <!-- 
 <div class="card text-center">

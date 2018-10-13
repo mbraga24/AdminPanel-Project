@@ -1,9 +1,28 @@
-<h1>Courses#new</h1>
-<p>I will have a form to create/delete/edit courses on this page</p>
+<h1>Courses</h1>
 
-<%= form_with(model: @course) do |form| %>
+ <%= form_with(model: @course) do |form| %>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="validationCustom01">Course Name</label>
+      <%= form.text_field :name, class:"form-control", id: "validationCustom01", required: true, placeholder: "Course Name" %>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="validationCustom02">Code Name</label>
+      <%= form.text_field :code_name, class:"form-control", id: "validationCustom02", required: true, placeholder: "Code Name" %>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="validationCustom03">Total Hours</label>
+       <%= form.text_field :total_hours, class:"form-control", id: "validationCustom03", required: true, placeholder: "Total Hours" %>
+    </div>
+  </div>
+    <%= form.submit "Create", class: "btn btn-primary" %>
+  </div>  
+  <% end %>
+</form>
+
+<!-- <%= form_with(model: @course) do |form| %>
   Name:         <%= form.text_field(:name)       %> <br />
   Code Name:    <%= form.text_field(:code_name)  %> <br />
   Total Hours:  <%= form.text_field(:total_hours)%> <br />
 <%= form.submit %>
-<% end %>
+<% end %> -->

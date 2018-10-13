@@ -5,6 +5,7 @@
     <tr>
       <th scope="col">ID</th>
       <th scope="col">Student</th>
+      <th scope="col">Email</th>
       <th scope="col">Cohort</th>
       <th scope="col">Education</th>
       <th scope="col">Age</th>
@@ -16,25 +17,39 @@
   </thead>
   <tbody>
   <% @students.each do |student|  %>
-    <tr>
-      <th scope="row"><%= student.id         %></th>
+    <tr id="student<%= student.id %>">
+      <th scope="row"><%= student.id %></th>
       <td><%= student.first_name %> <%= student.last_name %></td>
+      <td><%= student.email %></td>
       <td><%= student.cohort_id %></td>
       <td><%= student.education %></td>
       <td><%= student.age       %></td>
       <td><%= student.created_at.to_date %></td>
       <td><%= student.updated_at.to_date %></td>
-      <td><button type="button" class="btn btn-default btn-sm">
-          <a href="<%= edit_student_path(student) %>"><span class="glyphicon glyphicon-pencil"></span> 
-        </button></td>
-      <td><button type="button" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-trash"></span> 
-        </button></td>
-  
+      <td>
+        <button type="button" class="btn btn-default btn-sm">
+          <a href="<%= edit_student_path(student) %>">
+            <span class="glyphicon glyphicon-pencil"></span> 
+        </button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-default btn-sm">
+          <%= link_to(student_path(student.id), method: :delete, remote: :true) do %>
+            <span class="glyphicon glyphicon-trash"></span>
+          <% end %>
+        </button>
+      </td>
     </tr>
   <% end %>
   </tbody>
 </table>
+<div class="col-md-12 text-center"> 
+    <button type="button" class="btn btn-warning btn-lg">
+      <a href="<%= new_student_path %>">Create a Student</a>
+    </button> 
+</div>
+
+
 <!-- 
 <div class="card text-center">
 <% @students.each do |student| %>

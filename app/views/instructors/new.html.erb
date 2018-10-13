@@ -1,6 +1,40 @@
-<h1>Instructors#new</h1>
-<p>I will have a form to create/delete/edit instructors on this page</p>
+<h1>Instructors</h1>
 
+ <%= form_with(model: @instructor) do |form| %>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="validationCustom01">First Name</label>
+      <%= form.text_field :first_name, class:"form-control", id: "validationCustom01", required: true, placeholder: "First Name" %>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="validationCustom02">Last Name</label>
+      <%= form.text_field :last_name, class:"form-control", id: "validationCustom02", required: true, placeholder: "Last Name" %>
+    </div>
+    <div class="form-group col-md-1">
+      <label for="validationCustom03">Age</label>
+       <%= form.text_field :age, class:"form-control", id: "validationCustom03", required: true, placeholder: "Age" %>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-3">
+      <label for="inputState">Education</label>
+      <%= form.select :education, options_for_select(["B.S", "B.A", "T.A", "MASTER", "P.H.D"]), { prompt: "Select One", required: true }, { class: "form-control", id: "inputState" } %>
+    </div>
+    <div class="form-group col-md-2">
+      <label for="inputEmail4">Salary</label>
+      <%= form.text_field :salary, class:"form-control", id: "validationCustom04", required: true, placeholder: "Salary" %>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputState">Cohort</label>
+        <%= form.collection_select :cohort_id, Cohort.all, :id, :id, { prompt: "Select One", required: true }, { class: "form-control", id: "inputState" } %>
+    </div>
+  </div>
+    <%= form.submit "Create", class: "btn btn-primary" %> 
+  
+  <% end %>
+</form>
+
+<!-- 
 <%= form_with(model: @instructor) do |form| %>
   Cohort ID  <%= form.select :cohort_id, options_for_select(@cohorts, @cohort_id) %> <br />
   First Name <%= form.text_field(:first_name) %> <br />
@@ -9,4 +43,4 @@
   Salary     <%= form.text_field(:salary)     %> <br />
   Education  <%= form.text_field(:education)  %> <br />
 <%= form.submit %>
-<% end %>
+<% end %> -->
