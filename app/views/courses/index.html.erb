@@ -21,9 +21,13 @@
       <td><button type="button" class="btn btn-default btn-sm">
           <a href="<%= edit_course_path(course) %>"><span class="glyphicon glyphicon-pencil"></span></a>
         </button></td>
-      <td><button type="button" class="btn btn-default btn-sm">
-          <span class="glyphicon glyphicon-trash"></span> 
-        </button></td>
+      <td>
+        <button type="button" class="btn btn-default btn-sm">
+          <%= link_to(course_path(course.id), method: :delete, remote: :true) do %>
+            <span class="glyphicon glyphicon-trash"></span>
+          <% end %>
+        </button>
+      </td>
     </tr>
   <% end %>
   </tbody>
@@ -33,17 +37,3 @@
       <a href="<%= new_course_path %>">Create a Course</a>
     </button> 
 </div>
-
-<!-- 
-<div class="card text-center">
-<% @courses.each do |course| %>
-  <div class="card-header">
-    <%= course.name %> : <%= course.code_name %>
-  </div>
-  <div class="card-body">
-    <p class="card-text">Total Hours: <%= course.total_hours %></p>
-    <a href="<%= edit_course_path(course) %>" class="btn btn-primary">Edit</a>
-    <a href="#" class="btn btn-primary">Delete</a>
-  </div>
-  <% end %>
-</div> -->
