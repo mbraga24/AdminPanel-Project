@@ -12,13 +12,17 @@
     </div>
   </div>
   <div class="form-row">
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-2">
       <label for="validationCustom02">Start Date</label>
       <%= form.text_field :start_date, class:"form-control", id: "validationCustom02", required: true, placeholder: "Start Date" %>
     </div>
-    <div class="form-group col-md-3">
+    <div class="form-group col-md-2">
       <label for="validationCustom03">End Date</label>
       <%= form.text_field :end_date, class:"form-control", id: "validationCustom03", required: true, placeholder: "End Date" %>
+    </div>
+    <div class="form-group col-md-3">
+      <label for="inputState">Instructor</label>
+        <%= form.collection_select :instructor_id, Instructor.all, :id, :id, { prompt: "Select One", required: true }, { class: "form-control", id: "inputState" } %>
     </div>
   </div>
 

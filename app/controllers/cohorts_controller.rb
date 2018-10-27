@@ -7,6 +7,7 @@ class CohortsController < ApplicationController
 
   def new
     @cohort = Cohort.new
+    @instructor = Instructor.new
     
     @courses = Course.all.map { |course| 
       [course.name, course.id] 
@@ -16,6 +17,7 @@ class CohortsController < ApplicationController
   def create
     cohort = Cohort.create(
       course_id:       params[:cohort][:course_id],
+      instructor_id:   params[:cohort][:instructor_id],
       class_size:      params[:cohort][:class_size],
       start_date:      params[:cohort][:start_date],
       end_date:        params[:cohort][:end_date]
