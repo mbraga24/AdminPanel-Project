@@ -32,11 +32,9 @@ ActiveRecord::Schema.define(version: 2018_10_10_191522) do
     t.date "end_date"
     t.integer "class_size"
     t.bigint "course_id"
-    t.bigint "instructor_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_cohorts_on_course_id"
-    t.index ["instructor_id"], name: "index_cohorts_on_instructor_id"
   end
 
   create_table "courses", force: :cascade do |t|
