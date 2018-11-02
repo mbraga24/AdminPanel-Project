@@ -1,5 +1,12 @@
-<h1>Cohorts#show</h1>
-<p>Find me in app/views/cohorts/show.html.erb</p>
+<% @students_cohort=StudentsCohort.new %>
+<% puts @students.to_s%>
+<%= form_with model: @students_cohort do |form| %>
+  <%= form.select(:students_id, options_for_select(@students), 
+          { prompt: 'Add Students'}
+          ) %>
+  <%= form.hidden_field :cohort_id, value: @cohort.id %>
+  <%= form.submit%>
+<% end %>
 
 <table class="table table-hover">
   <thead>
@@ -11,7 +18,8 @@
     </tr>
   </thead>
   <tbody>
-      <% @cohort.students.each do |student| %>
+      <% @students_in_cohort.each do |students_cohort| %>
+        <% student=Student.find(students_cohort.student_id) %>
       <tr>
         <th scope="row"><%= student.id %></th>
         <td><%= student.first_name %></td>

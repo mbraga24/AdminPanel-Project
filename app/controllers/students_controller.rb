@@ -15,7 +15,6 @@ class StudentsController < ApplicationController
   def create
     student = Student.create(
       email:      params[:student][:email],
-      cohort_id:  params[:student][:cohort_id],
       first_name: params[:student][:first_name],
       last_name:  params[:student][:last_name],
       age:        params[:student][:age],

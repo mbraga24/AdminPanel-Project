@@ -43,6 +43,9 @@ class CohortsController < ApplicationController
 
   def show
     @cohort = Cohort.find(params[:id])
+    @students=Student.all.map{|student| [student.first_name, student.id]}
+    @students_in_cohort=StudentsCohort.where(cohort_id:  @cohort.id)
+    puts @students_in_cohort
   end
 
   def destroy

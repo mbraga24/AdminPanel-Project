@@ -26,10 +26,6 @@
       <label for="inputState">Education</label>
       <%= form.select :education, options_for_select(["High School","Freshman","Sophomore","Junior","Senior"]), { prompt: "Select One", required: true }, { class: "form-control", id: "inputState" } %>
     </div>
-    <div class="form-group col-md-3">
-      <label for="inputState">Cohort</label>
-        <%= form.collection_select :cohort_id, Cohort.all, :id, :id, { prompt: "Select One", required: true }, { class: "form-control", id: "inputState" } %>
-    </div>
     </div>
 
     <%= form.submit "Create", class: "btn btn-primary" %>

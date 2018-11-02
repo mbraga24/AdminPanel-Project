@@ -10,6 +10,7 @@
       <th scope="col">Course Assc.</th>
       <th scope="col">Start Date</th>
       <th scope="col">End Date</th>
+      <th scope="col">View Students</th>
       <th scope="col">Edit</th>
       <th scope="col">Delete</th>
     </tr>
@@ -32,6 +33,13 @@
       <td><%= cohort.course_id  %></td>
       <td><%= cohort.start_date %></td>
       <td><%= cohort.end_date   %></td>
+      <td>
+        <button type="button" class="btn btn-default btn-sm">
+        <%= link_to(cohort_path(cohort.id)) do %>
+          <span class="glyphicon glyphicon-eye-open"></span>
+        <% end %>
+        </button>
+      </td>
       <td><button type="button" class="btn btn-default btn-sm">
           <a href="<%= edit_cohort_path(cohort) %>"><span class="glyphicon glyphicon-pencil"></span></a>
         </button></td>
@@ -39,6 +47,7 @@
         <button type="button" class="btn btn-default btn-sm">
           <%= link_to(cohort_path(cohort.id), method: :delete, remote: :true) do %>
             <span class="glyphicon glyphicon-trash"></span>
+            
           <% end %>
         </button>
       </td>
